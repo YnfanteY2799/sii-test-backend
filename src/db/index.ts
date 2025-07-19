@@ -11,7 +11,7 @@ const pool = Pool(databaseUri, {
 	connect_timeout: 60,
 	connection: {
 		statement_timeout: 10000,
-		application_name: "empleasy_app",
+		application_name: "postgress_sii_app",
 		idle_in_transaction_session_timeout: 20000,
 	},
 	ssl: { rejectUnauthorized: false },
