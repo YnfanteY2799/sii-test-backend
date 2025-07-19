@@ -3,7 +3,7 @@
   "version": "1.0.50",
   "scripts": {
     "dev": "bun run scripts/setup.ts && bun run d",
-    "db:s": "bun run src/db/drizzle/seed/index.ts",
+    "db:s": "bun run src/db/seed/index.ts",
     "d": "bun run --watch src/index.ts",
     "db:g": "bunx drizzle-kit generate",
     "db:m": "bunx drizzle-kit migrate",

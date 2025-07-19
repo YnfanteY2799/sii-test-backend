@@ -1,9 +1,9 @@
-import { InternalServerErrorException, NotFoundException, UnauthorizedException } from "@/utils/error";
+import { InternalServerErrorException } from "@/utils/error";
 import { type SQL, count, sql, and, eq } from "drizzle-orm";
 import { db, cards, cardType } from "@/db/index.ts";
 import { GetAllQueryParams } from "../dto/index.ts";
 
-import { Elysia, InternalServerError } from "elysia";
+import { Elysia } from "elysia";
 
 export default new Elysia().get(
 	"GetAll",
@@ -30,12 +30,11 @@ export default new Elysia().get(
 			}
 
 			// Get total count
-			const [totalResult] = await db
+			const [{ count: total }] = await db
 				.select({ count: count() })
 				.from(cards)
 				.where(whereConditions.length > 0 ? and(...whereConditions) : undefined);
 
-			const total = totalResult?.count ?? 0;
 			const totalPages = Math.ceil(total / validLimit);
 
 			const data = await db
@@ -57,15 +56,16 @@ export default new Elysia().get(
 			return {
 				data,
 				pagination: {
-					page: validPage,
-					limit: validLimit,
 					total,
 					totalPages,
-					hasNext: validPage < totalPages,
+					page: validPage,
+					limit: validLimit,
 					hasPrev: validPage > 1,
+					hasNext: validPage < totalPages,
 				},
 			};
 		} catch (err) {
+			console.error(err);
 			throw new InternalServerErrorException(err ? (err as Error).message : "Error del lado del servidor");
 		}
 	},
