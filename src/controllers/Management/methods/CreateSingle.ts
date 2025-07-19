@@ -7,7 +7,13 @@ import { Elysia } from "elysia";
 export default new Elysia().post(
 	"Create",
 	async ({ body }) => {
+		// Sugar
+		const { card_cvv, card_number, expiration_date, holder_name } = body;
+
 		try {
+
+
+
 
 
 
