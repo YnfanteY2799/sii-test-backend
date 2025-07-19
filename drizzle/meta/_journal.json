@@ -8,6 +8,13 @@
       "when": 1752953128229,
       "tag": "0000_smart_angel",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1752953784359,
+      "tag": "0001_ambitious_power_man",
+      "breakpoints": true
     }
   ]
 }

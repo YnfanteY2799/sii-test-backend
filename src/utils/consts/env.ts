@@ -42,18 +42,6 @@ if (!databaseUrl || databaseUrl.length < 10) errors.push("DATABASE_URL is requir
 const jwtExpiresInTime = env.JWT_EXPIRES_IN;
 if (!jwtExpiresInTime || jwtExpiresInTime.length < 2) errors.push("JWT_EXPIRES_IN is required and must be at least 2 characters");
 
-// REDIS_DB_PORT validation
-const redisPortStr = env.REDIS_DB_PORT;
-if (!redisPortStr) errors.push("REDIS_DB_PORT is required");
-else {
-	const redisPort = +redisPortStr;
-	if (redisPort !== (redisPort | 0) || redisPort < 1024 || redisPort > 65535) errors.push("REDIS_DB_PORT must be an integer between 1024-65535");
-}
-
-// REDIS_DB_HOST validation
-const redisDBHost = env.REDIS_DB_HOST;
-if (!redisDBHost || redisDBHost.length < 4) errors.push("REDIS_DB_HOST is required and must be at least 4 characters");
-
 // Single error check and exit (faster than multiple checks)
 if (errors.length) {
 	console.error("❌ Environment validation failed:");
@@ -71,9 +59,7 @@ export const requestLimitCalls = +limitCallsStr!;
 export const requestWindowMs = +windowMsStr!;
 export const maxBodySizeMb = +bodySizeStr!;
 export const databaseUri = databaseUrl!;
-export const redisPort = +redisPortStr!;
 export const jwtSecret = jwtSecretKey!;
-export const redisHost = redisDBHost!;
 export const serverPort = +portStr!;
 
 // Pre-computed constants (compile-time calculations)

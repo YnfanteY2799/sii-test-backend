@@ -4,4 +4,4 @@ import { db } from "@/db/index.ts";
 
 import { Elysia } from "elysia";
 
-export default new Elysia().patch("UpdateSingle", async () => {}, {});
+export default new Elysia().patch("UpdateSingle/:id", async () => {}, {});

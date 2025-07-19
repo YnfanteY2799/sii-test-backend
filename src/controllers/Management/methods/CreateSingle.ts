@@ -1,5 +1,5 @@
 import { NotFoundException, UnauthorizedException } from "@/utils/error";
-import { CreateSingleCardDTO } from "../dto";
+import { CreateSingleCardDTO } from "../dto/index.ts";
 import { db } from "@/db/index.ts";
 
 import { Elysia } from "elysia";
