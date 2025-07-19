@@ -3,13 +3,13 @@ import { InferSelectModel, InferInsertModel, relations, Relations } from "drizzl
 import generateNanoID from "@/utils/nanoId";
 
 /*** Reference Tables */
-export const userStatus = pgTable(
-	"user_status",
+export const cardType = pgTable(
+	"card_type",
 	{
 		id: smallserial().primaryKey(),
 		name: varchar("name", { length: 255 }).notNull().unique(),
 		createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 		updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdateFn(() => new Date()),
 	},
-	({ id }) => [index("user_status_id_idx").on(id)]
+	({ id }) => [index("card_type_id_idx").on(id)]
 );
