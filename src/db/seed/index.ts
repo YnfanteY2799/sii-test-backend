@@ -7,11 +7,17 @@ import { db, cardType } from "../index.ts";
 		await db
 			.insert(cardType)
 			.values([
-
-
-
-
-				
+				{ name: "VISA" },
+				{ name: "AMEX" },
+				{ name: "MASTERCARD" },
+				{ name: "DISCOVER" },
+				{ name: "DINERS" },
+				{ name: "JCB" },
+				{ name: "CHINA_UNION_PAY" },
+				{ name: "MAESTRO" },
+				{ name: "ELO" },
+				{ name: "HIPERCARD" },
+				{ name: "MIR" },
 			])
 			.returning({ id: cardType.id })
 			.onConflictDoNothing({ target: cardType.id })
